@@ -13,7 +13,7 @@ Our exposure is a set of 11 indicator variables denoting the month of birth of e
 ## 2. Phenotype (outcome) data
 
 We use the PHESANT-derived data (derived using PHESANT v0.17) that was generated as part of a smoking MR-pheWAS [here](https://www.biorxiv.org/content/early/2018/10/19/441907).
-The code available [here](https://github.com/MRCIEU/PHESANT-MR-pheWAS-smoking/tree/master/2-PHESANT/sample-all-save).
+The code is available [here](https://github.com/MRCIEU/PHESANT-MR-pheWAS-smoking/tree/master/2-PHESANT/sample-all-save).
 
 
 ## 3. Run IV-pheWAS

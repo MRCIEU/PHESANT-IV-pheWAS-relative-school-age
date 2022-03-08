@@ -4,6 +4,18 @@
 
 We have conducted a hypothesis-free analysis, searching for the potential effects of relative school age.
 
+## Environment details
+
+
+The code uses some environment variables, which needs to be set in your linux environment.
+
+I set the results directory and project data directory temporarily with:
+
+```bash
+export RES_DIR="${HOME}/2022SchoolAge/results"
+export PROJECT_DATA="/mnt/storage/scratch/bo18534/SchoolAgeMiniProject/"
+```
+
 
 ## 1. Data preparation
 

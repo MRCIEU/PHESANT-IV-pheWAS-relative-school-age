@@ -1,75 +1,60 @@
-homedir = Sys.getenv('HOME')
-wobdir = Sys.getenv('WOBDIR')
+dataDir = Sys.getenv("PROJECT_DATA")
+
+##Generate exposure file for 3 exposure variables
+
+exposures = read.table(paste(dataDir,'/Derived/exposure_confounder_variables_subset.csv', sep=""), sep=',', header=1)
 
 
-library("data.table")
+##Instrumental variable 1: month of birth (x52)
+exposures = exposures[,c("eid","x52_0_0")]
+head(exposures)
+nrow(exposures)
 
-conf = fread(paste0(homedir,"/Phesant_ageatschool/data/confounder/variables_for_confounder.csv"), data.table=F)
+#390,454
 
-colnames(conf) = c("eid","x31_0_0","x52_0_0","x54_0_0","x54_1_0","x54_2_0","x1647_1_0","x1647_2_0","x1647_3_0","x21022_0_0")
-exp = conf[,c("eid","x52_0_0","x1647_1_0")]
-head(exp)
-nrow(exp)
+#################################################################################################
 
-#502616
+##Exposure 1: Binary variable born in August vs September
+#Restrict to participants born in August or September
+exposure1_sub = subset(exposures,(x52_0_0 == 8 | x52_0_0 == 9))
+head(exposure1_sub)
+nrow(exposure1_sub)
 
+#64,081 participants
 
-## Restrict to participants born in England in August or September
-
-exp_sub = subset(exp,((x52_0_0 == 8 | x52_0_0 == 9)&(x1647_1_0 == 1)))
-head(exp_sub)
-nrow(exp_sub)
-
-#64096 participants
-
-
-## Dummy variables for bron in August (0) or September (1)  - Exposure 1
-
-exp_sub["Aug_Sep"] = NA
-
-exp_sub$Aug_Sep[exp_sub$x52_0_0 == 8] = 0
-head(exp_sub)
-
-exp_sub$Aug_Sep[exp_sub$x52_0_0 == 9] = 1
-head(exp_sub)
-
-exp_fin = exp_sub[,c("eid","Aug_Sep")]
-head(exp_fin)
-write.csv(exp_fin, paste0(homedir,"/Phesant_ageatschool/data/exposure/exposure.csv"), row.names=F,quote=F)
+#Create Dummy variables for born in September (1) or August (0)
+exposure1_sub$Sep_Aug = ifelse(exposure1_sub$x52_0_0 == 9, 1, 0)
 
 
+exposure1_sub = exposure1_sub[,c("eid","Sep_Aug")]
+head(exposure1_sub)
 
+write.table(exposure1_sub, paste(dataDir,'/Derived/exposure1-Sep_Aug.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
 
-## Restrict to participants born in England
+#######################################################################################################
 
-exp_sub_1 = subset(exp,(x1647_1_0 == 1))
-head(exp_sub_1)
-nrow(exp_sub_1)
+##Exposure 2: Categorical variable of month of birth (sept=0 to aug=11)
 
-#390580 participants
+head(exposures)
 
-## Dummy variable for each month startin with September (0)  - Exposure 2
+exposures["recode_month"] = NA
+exposures$recode_month[exposures$x52_0_0 == 9] = 0
+exposures$recode_month[exposures$x52_0_0 == 10] = 1
+exposures$recode_month[exposures$x52_0_0 == 11] = 2
+exposures$recode_month[exposures$x52_0_0 == 12] = 3
+exposures$recode_month[exposures$x52_0_0 == 1] = 4
+exposures$recode_month[exposures$x52_0_0 == 2] = 5
+exposures$recode_month[exposures$x52_0_0 == 3] = 6
+exposures$recode_month[exposures$x52_0_0 == 4] = 7
+exposures$recode_month[exposures$x52_0_0 == 5] = 8
+exposures$recode_month[exposures$x52_0_0 == 6] = 9
+exposures$recode_month[exposures$x52_0_0 == 7] = 10
+exposures$recode_month[exposures$x52_0_0 == 8] = 11
 
-exp_sub_1["recode_month"] = NA
-
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 9] = 0
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 10] = 1
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 11] = 2
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 12] = 3
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 1] = 4
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 2] = 5
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 3] = 6
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 4] = 7
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 5] = 8
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 6] = 9
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 7] = 10
-exp_sub_1$recode_month[exp_sub_1$x52_0_0 == 8] = 11
-
-head(exp_sub_1)
-
-exp_fin_1 = exp_sub_1[,c("eid","recode_month")]
-head(exp_fin_1)
-write.csv(exp_fin_1, paste0(homedir,"/Phesant_ageatschool/data/exposure/exposure_1.csv"), row.names=F,quote=F)
+head(exposures)
+exposure2 = exposures[,c("eid","recode_month")]
+head(exposure2)
+write.table(exposure2, paste(dataDir,'/Derived/exposure2-months0-11.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
 
 
 ## Exposure file with Dummy variables for each month

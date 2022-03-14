@@ -103,6 +103,8 @@ testCategoricalOrdered <- function(resDir, partNum, numParts, confounders, trait
 		## baseline
 		fitB <- polr(phenoFactor ~ ., data=confs, Hess=TRUE)
 
+		if (fit$converged == TRUE & fitB$converged == TRUE) {
+
 		## compare model to baseline model
                 require(lmtest)
                 lres = lrtest(fit, fitB)
@@ -117,6 +119,14 @@ testCategoricalOrdered <- function(resDir, partNum, numParts, confounders, trait
                 sink()
 
 		write(paste(varName, varType, numNotNA, modelP, sep=","), file=paste(resDir,"results-ordered-logistic-",partNum, "-", numParts,".txt", sep=""), append=TRUE)
+
+
+		}
+                else {
+                        sink(resLogFile, append=TRUE)
+                        cat("MODEL DID NOT CONVERGE")
+                        sink()
+                }
 
 
 		### END TRYCATCH

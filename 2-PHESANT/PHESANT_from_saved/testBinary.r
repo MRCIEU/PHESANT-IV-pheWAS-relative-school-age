@@ -92,6 +92,8 @@ myBinaryRegression <- function(confsPlusExp, confs, phenoFactor, partNum, numPar
 		## baseline
 		fitB <- glm(phenoFactor ~ ., data=confs, family="binomial")
 
+		if (fit$converged == TRUE & fitB$converged == TRUE) {
+
 		## compare model to baseline model
                 require(lmtest)
                 lres = lrtest(fit, fitB)
@@ -111,5 +113,11 @@ myBinaryRegression <- function(confsPlusExp, confs, phenoFactor, partNum, numPar
                 ## save result to file
 		write(paste(varName, varType, paste(idxTrue,"/",idxFalse,"(",numNotNA,")",sep=""), modelP, sep=","), file=paste(resDir,"results-logistic-binary-",partNum, "-", numParts,".txt", sep=""), append=TRUE)
 
+		}
+		else {
+			sink(resLogFile, append=TRUE)
+			cat("MODEL DID NOT CONVERGE")
+			sink()
+		}
 
 }

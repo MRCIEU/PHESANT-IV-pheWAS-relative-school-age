@@ -1,19 +1,19 @@
 #!/bin/bash
 
 #SBATCH --job-name=phesant_exposure2
-#SBATCH --partition=veryshort
+#SBATCH --partition=cpu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=1:0:00
+#SBATCH --time=5-00:0:00
 #SBATCH --mem=100G
-
+#SBATCH --array=1-100
 echo 'phesant_exposure2'
 srun hostname
 
 
 #------------------------------------------------------------------------------------
-#---------------------------------------------
+
 
 cd $PBS_O_WORKDIR
 
@@ -30,7 +30,7 @@ confFile="${dataDir}Derived/confounders-sex_age.csv"
 
 phenodir="${dataDir}derived_phenotypes/"
 
-part=${PBS_ARRAYID}
+part=${SLURM_ARRAY_TASK_ID}
 np=200
 
 cd ..

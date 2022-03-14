@@ -24,6 +24,6 @@ part=${PBS_ARRAYID}
 np=200
 
 cd ..
-Rscript testFromSaved.r --userId="eid" --resDir=${resultsDir} --partIdx=${part} --numParts=${np} --confounderfile=${confFile} --phenoDir=${phenodir} --traitofinterestfile=${expFile}
+Rscript ../PHESANT_from_saved/testFromSaved.r --userId="eid" --resDir=${resultsDir} --partIdx=${part} --numParts=${np} --confounderfile=${confFile} --phenoDir=${phenodir} --traitofinterestfile=${expFile}
 
 date 

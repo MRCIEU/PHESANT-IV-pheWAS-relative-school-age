@@ -59,6 +59,8 @@ testContinuous <- function(resDir, partNum, numParts, confounders, traitofintere
 		## baseline
 		fitB <- lm(pheno ~  ., data=confs)
 
+		if (fit$converged == TRUE & fitB$converged == TRUE) {
+
 		## compare model to baseline model
                 require(lmtest)
                 lres = lrtest(fit, fitB)
@@ -70,6 +72,14 @@ testContinuous <- function(resDir, partNum, numParts, confounders, traitofintere
 		sink()
 
 		write(paste(varName, varType, numNotNA, modelP, sep=","), file=paste(resDir,"results-linear-",partNum, "-", numParts,".txt", sep=""), append=TRUE)
+
+		}
+                else {
+                        sink(resLogFile, append=TRUE)
+                        cat("MODEL DID NOT CONVERGE")
+                        sink()
+                }
+
 		}
 
 		sink(resLogFile, append=TRUE)

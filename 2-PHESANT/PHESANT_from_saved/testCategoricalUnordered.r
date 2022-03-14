@@ -88,6 +88,8 @@ testCategoricalUnordered <- function(resDir, partNum, numParts, confounders, tra
 
 		sink()
 
+		if (fit$converged == TRUE & fitB$converged == TRUE) {
+
 		## compare model to baseline model
 		require(lmtest)
 		lres = lrtest(fit, fitB)
@@ -102,6 +104,14 @@ testCategoricalUnordered <- function(resDir, partNum, numParts, confounders, tra
                 sink()
 
 		write(paste(paste(varName,"-",reference,sep=""), varType, paste(maxFreq,"/",numNotNA,sep=""),modelP, sep=","), file=paste(resDir,"results-multinomial-logistic-",partNum, "-", numParts,".txt",sep=""), append="TRUE")
+
+		}
+                else {
+                        sink(resLogFile, append=TRUE)
+                        cat("MODEL DID NOT CONVERGE")
+                        sink()
+                }
+
 
 		}
 

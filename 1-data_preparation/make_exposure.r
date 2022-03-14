@@ -33,73 +33,51 @@ write.table(exposure1_sub, paste(dataDir,'/Derived/exposure1-Sep_Aug.csv',sep=""
 
 #######################################################################################################
 
-##Exposure 2: Categorical variable of month of birth (sept=0 to aug=11)
+##Exposure 2:11 indicator variables for each month of birth (excluding September)
 
+
+exposures["Oct"]= 0
+exposures["Nov"]= 0
+exposures["Dec"]= 0
+exposures["Jan"]= 0
+exposures["Feb"]= 0
+exposures["Mar"]= 0
+exposures["Apr"]= 0
+exposures["May"]= 0
+exposures["Jun"]= 0
+exposures["Jul"]= 0
+exposures["Aug"]= 0
 head(exposures)
 
-exposures["recode_month"] = NA
-exposures$recode_month[exposures$x52_0_0 == 9] = 0
-exposures$recode_month[exposures$x52_0_0 == 10] = 1
-exposures$recode_month[exposures$x52_0_0 == 11] = 2
-exposures$recode_month[exposures$x52_0_0 == 12] = 3
-exposures$recode_month[exposures$x52_0_0 == 1] = 4
-exposures$recode_month[exposures$x52_0_0 == 2] = 5
-exposures$recode_month[exposures$x52_0_0 == 3] = 6
-exposures$recode_month[exposures$x52_0_0 == 4] = 7
-exposures$recode_month[exposures$x52_0_0 == 5] = 8
-exposures$recode_month[exposures$x52_0_0 == 6] = 9
-exposures$recode_month[exposures$x52_0_0 == 7] = 10
-exposures$recode_month[exposures$x52_0_0 == 8] = 11
+exposures$Oct[exposures$x52_0_0 == 10] = 1
+exposures$Nov[exposures$x52_0_0 == 11] = 1
+exposures$Dec[exposures$x52_0_0 == 12] = 1
+exposures$Jan[exposures$x52_0_0 == 1] = 1
+exposures$Feb[exposures$x52_0_0 == 2] = 1
+exposures$Mar[exposures$x52_0_0 == 3] = 1
+exposures$Apr[exposures$x52_0_0 == 4] = 1
+exposures$May[exposures$x52_0_0 == 5] = 1
+exposures$Jun[exposures$x52_0_0 == 6] = 1
+exposures$Jul[exposures$x52_0_0 == 7] = 1
+exposures$Aug[exposures$x52_0_0 == 8] = 1
+
+exposures$Oct[exposures$x52_0_0 == NA] = NA
+exposures$Nov[exposures$x52_0_0 == NA] = NA
+exposures$Dec[exposures$x52_0_0 == NA] = NA
+exposures$Jan[exposures$x52_0_0 == NA] = NA
+exposures$Feb[exposures$x52_0_0 == NA] = NA
+exposures$Mar[exposures$x52_0_0 == NA] = NA
+exposures$Apr[exposures$x52_0_0 == NA] = NA
+exposures$May[exposures$x52_0_0 == NA] = NA
+exposures$Jun[exposures$x52_0_0 == NA] = NA
+exposures$Jul[exposures$x52_0_0 == NA] = NA
+exposures$Aug[exposures$x52_0_0 == NA] = NA
 
 head(exposures)
-exposure2 = exposures[,c("eid","recode_month")]
+exposure2 = exposures [,c("eid","Oct","Nov","Dec","Jan","Feb","Mar","May","Jun","Jul","Aug")]
 head(exposure2)
-write.table(exposure2, paste(dataDir,'/Derived/exposure2-months0-11.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
+write.table(exposure2, paste(dataDir,'/Derived/exposure2_month_indicator_variables.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
 
-
-## Exposure file with Dummy variables for each month
-
-exp_sub_2 = exp_sub_1
-exp_sub_2["Oct"]= 0
-exp_sub_2["Nov"]= 0
-exp_sub_2["Dec"]= 0
-exp_sub_2["Jan"]= 0
-exp_sub_2["Feb"]= 0
-exp_sub_2["Mar"]= 0
-exp_sub_2["Apr"]= 0
-exp_sub_2["May"]= 0
-exp_sub_2["Jun"]= 0
-exp_sub_2["Jul"]= 0
-exp_sub_2["Aug"]= 0
-
-exp_sub_2$Oct[exp_sub_2$x52_0_0 == 10] = 1
-exp_sub_2$Nov[exp_sub_2$x52_0_0 == 11] = 1
-exp_sub_2$Dec[exp_sub_2$x52_0_0 == 12] = 1
-exp_sub_2$Jan[exp_sub_2$x52_0_0 == 1] = 1
-exp_sub_2$Feb[exp_sub_2$x52_0_0 == 2] = 1
-exp_sub_2$Mar[exp_sub_2$x52_0_0 == 3] = 1
-exp_sub_2$Apr[exp_sub_2$x52_0_0 == 4] = 1
-exp_sub_2$May[exp_sub_2$x52_0_0 == 5] = 1
-exp_sub_2$Jun[exp_sub_2$x52_0_0 == 6] = 1
-exp_sub_2$Jul[exp_sub_2$x52_0_0 == 7] = 1
-exp_sub_2$Aug[exp_sub_2$x52_0_0 == 8] = 1
-
-exp_sub_2$Oct[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Nov[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Dec[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Jan[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Feb[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Mar[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Apr[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$May[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Jun[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Jul[exp_sub_2$x52_0_0 == NA] = NA
-exp_sub_2$Aug[exp_sub_2$x52_0_0 == NA] = NA
-
-
-exp_fin_2 = exp_sub_2[,c("eid","Oct","Nov","Dec","Jan","Feb","Mar","May","Jun","Jul","Aug")]
-head(exp_fin_2)
-write.csv(exp_fin_2, paste0(homedir,"/Phesant_ageatschool/data/exposure/exposure_2.csv"), row.names=F,quote=F)
 
 #######################################################
 ## Week of Birth #####################################

@@ -13,7 +13,7 @@
 *.gen
 
 # files generated from BlueCrystal jobs
-out*
+*.out
 error*
 j*.sh.e*
 

@@ -10,7 +10,7 @@ exposures = exposures[,c("eid","x52_0_0")]
 head(exposures)
 nrow(exposures)
 
-#390,454
+#390,427
 
 #################################################################################################
 
@@ -20,7 +20,7 @@ exposure1_sub = subset(exposures,(x52_0_0 == 8 | x52_0_0 == 9))
 head(exposure1_sub)
 nrow(exposure1_sub)
 
-#64,081 participants
+#64,075 participants
 
 #Create Dummy variables for born in September (1) or August (0)
 exposure1_sub$Sep_Aug = ifelse(exposure1_sub$x52_0_0 == 9, 1, 0)

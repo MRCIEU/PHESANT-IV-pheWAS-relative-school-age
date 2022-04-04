@@ -8,17 +8,17 @@ Run exposure/confounder extraction on Blue Crystal Phase 4.
 sbatch 1-extract_Exp_Conf.sh
 ```
 
-##2. Restrict sample to those born in England.
+## 2. Restrict sample to those who haven't withdrawn & those  born in England.
 
 See ```restrict_sample.r```
 
-##3. Create Confounders file.
+## 3. Create Confounders file.
 
 Includes age and sex.
 
 See ```make_confounder.r```
 
-##4. Create Exposure files.
+## 4. Create Exposure files.
 
 1. A binary variable of those born in August versus those born in September (i.e. restricting to participants born in these months) (with September coded as 1 and August as 0)
 2. A set of 11 indicator variables describing the month of birth of each participant (with September as baseline).

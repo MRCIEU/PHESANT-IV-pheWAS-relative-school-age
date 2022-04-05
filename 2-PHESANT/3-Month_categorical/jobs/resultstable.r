@@ -1,5 +1,5 @@
 resDir = Sys.getenv("RES_DIR")
-
+ 
 allres = data.frame(varName=character(), varType=character(), n=double(), pvalue=double()) 
 
 for (i in 1:200)

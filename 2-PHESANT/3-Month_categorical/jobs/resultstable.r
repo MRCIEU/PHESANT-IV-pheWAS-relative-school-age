@@ -1,3 +1,4 @@
+
 resDir = Sys.getenv("RES_DIR")
  
 allres = data.frame(varName=character(), varType=character(), n=double(), pvalue=double()) 
@@ -31,11 +32,9 @@ allres = rbind(allres,combinedresults)
 }
 
 
-
 #Order according to p values (order dataframe by columnn)
 allres = allres[order(allres$pvalue),]
 head(allres)
 
 write.table(allres, paste(resDir,'/phesant/exposure2/allres.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
 
-####need to create loop for other arrays

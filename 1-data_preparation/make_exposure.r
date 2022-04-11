@@ -86,17 +86,20 @@ write.table(exposure2, paste(dataDir,'/Derived/exposure2_month_indicator_variabl
 
 library(dplyr)
 
-wob = read.table(paste(dataDir,'/Original/app_16729_wob.csv', sep=""), sep=',', header=1) 
+wob = read.table(paste(dataDir,'/Derived/wob_subset.csv', sep=""), sep=',', header=1) 
 head(wob)
 nrow(wob)
+#390427
 
 #Remove cases which fall in week 35 (includes the 31st August & 1st September)
 wob = subset(wob, week != 35)
-head(wob)
 nrow(wob)
+#383,309
+
 
 #Recode weeks so that week 36 (beginning of September = 1)
 wob$week_new =recode(wob$week,'36'=1, '37'=2, '38'=3, '39'=4, '40'=5, '41'=6, '42'=7, '43'=8, '44'=9, '45'=10, '46'=11, '47'=12, '48'=13, '49'=14, '50'=15, '51'=16, '52'=17, '1'=18, '2'=19, '3'=20, '4'=21, '5'=22, '6'=23, '7'=24, '8'=25, '9'=26, '10'=27, '11'=28, '12'=29, '13'=30, '14'=31, '15'=32, '16'=33, '17'=34, '18'=35, '19'=36, '20'=37, '21'=38, '22'=39, '23'=40, '24'=41, '25'=42, '26'=43, '27'=44, '28'=45, '29'=46, '30'=47, '31'=48, '32'=49, '33'=50, '34'=51)
+head(wob)
 
 #Order according to week of birth
 wob = wob[order(wob$week_new),]

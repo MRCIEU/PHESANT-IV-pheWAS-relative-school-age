@@ -35,4 +35,4 @@ allres = rbind(allres,combinedresults)
 allres = allres[order(allres$pvalue),]
 head(allres)
 
-write.table(allres, paste(resDir,'/phesant/exposure1/allres_exp1.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE
+write.table(allres, paste(resDir,'/phesant/exposure1/allres_exp1.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)

@@ -103,7 +103,7 @@ testCategoricalOrdered <- function(resDir, partNum, numParts, confounders, trait
 		## baseline
 		fitB <- polr(phenoFactor ~ ., data=confs, Hess=TRUE)
 
-		if (fit$converged == TRUE & fitB$converged == TRUE) {
+		if (fit$convergence == 0 & fitB$convergence == 0) {
 
 		## compare model to baseline model
                 require(lmtest)

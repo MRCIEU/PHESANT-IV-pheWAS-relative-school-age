@@ -1,4 +1,4 @@
-
+traitofinterest <<- colnames(exposure[,2:ncol(exposure)])traitofinterest <<- colnames(exposure[,2:ncol(exposure)])
 
 library("optparse")
 
@@ -46,7 +46,7 @@ write("varName,varType,n,pvalue", file=paste(opt$resDir,"results-multinomial-log
 
 ## get column names (minus participantID column) of the exposure variables - as many as are in the trait of interest file
 
-traitofinterest <<- colnames(exposure[,2:ncol(exposure)])
+traitofinterest <<- colnames(exposure[,2:ncol(exposure), drop=FALSE])
 print("Column names of trait of interest")
 print(traitofinterest)
 

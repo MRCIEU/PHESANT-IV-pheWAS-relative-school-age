@@ -1,5 +1,3 @@
-traitofinterest <<- colnames(exposure[,2:ncol(exposure)])traitofinterest <<- colnames(exposure[,2:ncol(exposure)])
-
 library("optparse")
 
 option_list = list(

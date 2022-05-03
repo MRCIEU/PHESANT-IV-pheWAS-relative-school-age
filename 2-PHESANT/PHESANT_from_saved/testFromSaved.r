@@ -34,19 +34,21 @@ sink(resLogFile)
 sink()
 
 
-## create empty results files
-
-write("varName,varType,n,pvalue", file=paste(opt$resDir,"results-logistic-binary-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), append=FALSE)
-write("varName,varType,n,pvalue", file=paste(opt$resDir,"results-linear-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), append=FALSE)
-write("varName,varType,n,pvalue", file=paste(opt$resDir,"results-ordered-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), append=FALSE)
-write("varName,varType,n,pvalue", file=paste(opt$resDir,"results-multinomial-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), append=FALSE)
-
 
 ## get column names (minus participantID column) of the exposure variables - as many as are in the trait of interest file
 
 traitofinterest <<- colnames(exposure[,2:ncol(exposure), drop=FALSE])
 print("Column names of trait of interest")
 print(traitofinterest)
+
+
+## create empty results files
+
+source('saveHeader.R')
+saveHeader(paste(opt$resDir,"results-logistic-binary-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
+saveHeader(paste(opt$resDir,"results-linear-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
+saveHeader(paste(opt$resDir,"results-ordered-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
+saveHeader(paste(opt$resDir,"results-multinomial-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
 
 
 ## test each type of outcome

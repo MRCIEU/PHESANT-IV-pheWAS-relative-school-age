@@ -111,7 +111,11 @@ myBinaryRegression <- function(confsPlusExp, confs, phenoFactor, partNum, numPar
                 sink()
 
                 ## save result to file
-		write(paste(varName, varType, paste(idxTrue,"/",idxFalse,"(",numNotNA,")",sep=""), modelP, sep=","), file=paste(resDir,"results-logistic-binary-",partNum, "-", numParts,".txt", sep=""), append=TRUE)
+
+		source('saveBinaryResult.R')
+                saveBinaryResult(varName, varType, paste(idxTrue,"/",idxFalse,"(",numNotNA,")",sep=""), modelP, paste(resDir,"results-logistic-binary-",partNum, "-", numParts,".txt", sep=""), traitofinterestname, fit)
+
+
 
 		}
 		else {

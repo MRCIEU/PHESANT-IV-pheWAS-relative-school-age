@@ -118,7 +118,9 @@ testCategoricalOrdered <- function(resDir, partNum, numParts, confounders, trait
                 cat("SUCCESS results-catord")
                 sink()
 
-		write(paste(varName, varType, numNotNA, modelP, sep=","), file=paste(resDir,"results-ordered-logistic-",partNum, "-", numParts,".txt", sep=""), append=TRUE)
+		source('saveCatOrdResult.R')
+                saveCatOrdResult(varName, varType, paste(idxTrue,"/",idxFalse,"(",numNotNA,")",sep=""), modelP, paste(resDir,"results-ordered-logistic-",partNum, "-", numParts,".txt", sep=""), traitofinterestname, fit)
+
 
 
 		}

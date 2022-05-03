@@ -71,7 +71,8 @@ testContinuous <- function(resDir, partNum, numParts, confounders, traitofintere
 		cat("SUCCESS results-linear")
 		sink()
 
-		write(paste(varName, varType, numNotNA, modelP, sep=","), file=paste(resDir,"results-linear-",partNum, "-", numParts,".txt", sep=""), append=TRUE)
+		source('saveContinuousResult.R')
+		saveContinuousResult(varName, varType, numNotNA, modelP, paste(resDir,"results-linear-",partNum, "-", numParts,".txt", sep=""), traitofinterestname, fit)
 
 		#}
                 #else {

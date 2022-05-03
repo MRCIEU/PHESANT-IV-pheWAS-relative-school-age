@@ -103,7 +103,11 @@ testCategoricalUnordered <- function(resDir, partNum, numParts, confounders, tra
                 cat("SUCCESS results-catunord")
                 sink()
 
-		write(paste(paste(varName,"-",reference,sep=""), varType, paste(maxFreq,"/",numNotNA,sep=""),modelP, sep=","), file=paste(resDir,"results-multinomial-logistic-",partNum, "-", numParts,".txt",sep=""), append="TRUE")
+#		write(paste(paste(varName,"-",reference,sep=""), varType, paste(maxFreq,"/",numNotNA,sep=""),modelP, sep=","), file=paste(resDir,"results-multinomial-logistic-",partNum, "-", numParts,".txt",sep=""), append="TRUE")
+
+		source('saveCatUnordResult.R')
+		saveCatUnordResult(varName, varType, paste(idxTrue,"/",idxFalse,"(",numNotNA,")",sep=""), modelP, paste(resDir,"results-multinomial-logistic-",partNum, "-", numParts,".txt", sep=""), traitofinterestname, fit)
+
 
 		}
                 else {

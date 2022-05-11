@@ -74,7 +74,7 @@ exposures$Jul[exposures$x52_0_0 == NA] = NA
 exposures$Aug[exposures$x52_0_0 == NA] = NA
 
 head(exposures)
-exposure2 = exposures [,c("eid","Oct","Nov","Dec","Jan","Feb","Mar","May","Jun","Jul","Aug")]
+exposure2 = exposures [,c("eid","Oct","Nov","Dec","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug")]
 head(exposure2)
 write.table(exposure2, paste(dataDir,'/Derived/exposure2_month_indicator_variables.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
 

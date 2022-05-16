@@ -1,7 +1,5 @@
 resDir = Sys.getenv("RES_DIR")
 
-allres = data.frame(varName=character(), varType=character(), n=double(), pvalue=double())
-
 for (i in 1:200)
 {
 
@@ -26,10 +24,15 @@ nrow(resultsordered)
 combinedresults = rbind(resultslinear, resultsbinary, resultsmultinomial, resultsordered)
 nrow(combinedresults)
 
+if (i==1){
+allres = combinedresults
+} else {
 allres = rbind(allres,combinedresults)
+}
 
 }
 
+head(allres)
 
 #Order according to p values (order dataframe by columnn)
 allres = allres[order(allres$pvalue),]

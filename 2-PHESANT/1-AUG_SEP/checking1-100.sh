@@ -2,5 +2,5 @@
 for i in {1..100}
 do
    echo "Array $i"
-   grep BST slurm-10321679_${i}.out
+   grep BST slurm-10343005_${i}.out
 done

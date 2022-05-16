@@ -88,7 +88,7 @@ testCategoricalUnordered <- function(resDir, partNum, numParts, confounders, tra
 
 		sink()
 
-		if (fit$converged == TRUE & fitB$converged == TRUE) {
+		if (fit$convergence == 1 & fitB$convergence == 1) {
 
 		## compare model to baseline model
 		require(lmtest)
@@ -102,8 +102,6 @@ testCategoricalUnordered <- function(resDir, partNum, numParts, confounders, tra
 		sink(resLogFile, append=TRUE)
                 cat("SUCCESS results-catunord")
                 sink()
-
-#		write(paste(paste(varName,"-",reference,sep=""), varType, paste(maxFreq,"/",numNotNA,sep=""),modelP, sep=","), file=paste(resDir,"results-multinomial-logistic-",partNum, "-", numParts,".txt",sep=""), append="TRUE")
 
 		source('saveCatUnordResult.R')
 		saveCatUnordResult(varName, varType, paste(idxTrue,"/",idxFalse,"(",numNotNA,")",sep=""), modelP, paste(resDir,"results-multinomial-logistic-",partNum, "-", numParts,".txt", sep=""), traitofinterestname, fit)

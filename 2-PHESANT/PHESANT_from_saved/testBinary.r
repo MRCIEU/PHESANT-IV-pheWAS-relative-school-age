@@ -62,7 +62,7 @@ testBinary <- function(resDir, partNum, numParts, confounders, traitofinterest, 
 
 		phenoFactor = factor(pheno)
 
-		myBinaryRegression(confsPlusExp, confs, phenoFactor, partNum, numParts, resDir, varName)
+		myBinaryRegression(confsPlusExp, confs, phenoFactor, partNum, numParts, resDir, varName, traitofinterestname)
 
 		## save result to file
 		sink(resLogFile, append=TRUE)
@@ -80,7 +80,7 @@ testBinary <- function(resDir, partNum, numParts, confounders, traitofinterest, 
 
 
 
-myBinaryRegression <- function(confsPlusExp, confs, phenoFactor, partNum, numParts, resDir, varName) {
+myBinaryRegression <- function(confsPlusExp, confs, phenoFactor, partNum, numParts, resDir, varName, traitofinterestname) {
 
 	print(unique(phenoFactor))
 

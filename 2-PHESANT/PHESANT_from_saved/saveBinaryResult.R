@@ -10,7 +10,7 @@ saveBinaryResult <- function(varName, varType, numNotNA, modelP, filename, param
     param = params[i]
     beta = cf[param, "Estimate"]
     se = cf[param, "Std. Error"]
-    cis = confint(mylogit, param, level=0.95)
+    cis = confint(fit, param, level=0.95)
     ciL = cis["2.5 %"]
     ciU  =cis["97.5 %"]
 

@@ -58,4 +58,4 @@ exp1-3_res <- exp1-3_res[order(exp1-3_res$pvalue_exp1),]
 head(exp1-3_res)
 
 #Save combined results file
-write.table(allres, paste(resDir,'/phesant/combinedresults.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
+write.table(exp1-3_res, paste(resDir,'/phesant/combinedresults.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)

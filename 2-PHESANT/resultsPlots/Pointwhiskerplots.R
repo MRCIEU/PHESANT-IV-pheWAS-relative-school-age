@@ -1,11 +1,10 @@
 resDir = Sys.getenv("RES_DIR")
 library("ggplot2")
 
-exp2_data<-read.delim(paste(resDir,'/phesant/exposure2/allres.csv', sep=""), sep=',', header=1)
-head(exp2_data)
+threshsub<-read.delim(paste(resDir,'/phesant/thresholdsubset.csv', sep=""), sep=',', header=1)
+head(threshsub)
 
-
-numrows <- nrow(exp2_data)
+numrows <- nrow(threshsub)
 print(numrows)
 
 for (i in 1:numrows){

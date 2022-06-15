@@ -14,8 +14,11 @@ head(exp3_res)
 ##Keep only the columns we need (Get rid of varType as is NA and is duplicated in all exposures)
 
 exp1_res<-subset(exp1_res, select=-c(varType))
+head(exp1_res)
 exp2_res<-subset(exp2_res, select=-c(varType))
+head(exp2_res)
 exp3_res<-subset(exp3_res, select=-c(varType))
+head(exp3_res)
 
 ##Change the column names to exposure 1 - 3
 
@@ -43,19 +46,25 @@ head(exp3_res)
 #Merge exposures 1 & 2
 
 print(dim(exp1_res))
+#14275, 7
 print(dim(exp2_res))
-exp1-2_res <- merge(exp1_res,exp2_res, by="varName", all.x = TRUE, all.y=TRUE)
-print(dim(exp1-2_res))
-head(exp1-2_res)
+#22136, 47
+exp1_2res <- merge(exp1_res,exp2_res, by="varName", all.x = TRUE, all.y=TRUE)
+print(dim(exp1_2res))
+#22136, 53
+head(exp1_2res)
 
 #Merge exposures 1-2 and 3
-exp1-3_res <-merge(exp1-2_res,exp3_res, by="varName", all.x = TRUE, all.y=TRUE)
-print(dim(exp1-3_res))
-head(exp1-3_res)
+print(dim(exp3_res))
+#22399, 7
+exp1_3res <-merge(exp1_2res,exp3_res, by="varName", all.x = TRUE, all.y=TRUE)
+print(dim(exp1_3res))
+#22459, 59
+head(exp1_3res)
 
 #Sort according to p value for exposure 1
-exp1-3_res <- exp1-3_res[order(exp1-3_res$pvalue_exp1),]
-head(exp1-3_res)
+exp1_3res <- exp1_3res[order(exp1_3res$pvalue_exp1),]
+head(exp1_3res)
 
 #Save combined results file
-write.table(exp1-3_res, paste(resDir,'/phesant/combinedresults.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)
+write.table(exp1_3res, paste(resDir,'/phesant/combinedresults.csv',sep=""), sep=',', row.names=FALSE, quote = FALSE)

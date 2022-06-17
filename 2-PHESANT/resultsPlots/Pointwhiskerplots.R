@@ -7,13 +7,16 @@ head(threshsub)
 numrows <- nrow(threshsub)
 print(numrows)
 
+setwd(Sys.getenv("RES_DIR"))
+
 for (i in 1:numrows){
-  varName <- exp2_data[i,"varName"]
+  varName <- threshsub[i,"varName"]
 
 Month <- c("Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Oct", "Nov", "Dec")
-Beta <- c(exp2_data[i,"beta_Jan"],exp2_data[i,"beta_Feb"], exp2_data[i,"beta_Mar"], exp2_data[i,"beta_Apr"], exp2_data[i,"beta_May"], exp2_data[i,"beta_Jun"], exp2_data[i,"beta_Jul"], exp2_data[i,"beta_Aug"], exp2_data[i,"beta_Oct"], exp2_data[i,"beta_Nov"], exp2_data[i,"beta_Dec"] )
-lowci <-c(exp2_data[i,"ciL_Jan"],exp2_data[i,"ciL_Feb"], exp2_data[i,"ciL_Mar"], exp2_data[i,"ciL_Apr"], exp2_data[i,"ciL_May"], exp2_data[i,"ciL_Jun"], exp2_data[i,"ciL_Jul"], exp2_data[i,"ciL_Aug"], exp2_data[i,"ciL_Oct"], exp2_data[i,"ciL_Nov"], exp2_data[i,"ciL_Dec"])
-upci <- c(exp2_data[i,"ciU_Jan"],exp2_data[i,"ciU_Feb"], exp2_data[i,"ciU_Mar"], exp2_data[i,"ciU_Apr"], exp2_data[i,"ciU_May"], exp2_data[i,"ciU_Jun"], exp2_data[i,"ciU_Jul"], exp2_data[i,"ciU_Aug"], exp2_data[i,"ciU_Oct"], exp2_data[i,"ciU_Nov"], exp2_data[i,"ciU_Dec"])
+Beta <- c(threshsub[i,"beta_Jan"],threshsub[i,"beta_Feb"], threshsub[i,"beta_Mar"], threshsub[i,"beta_Apr"], threshsub[i,"beta_May"], threshsub[i,"beta_Jun"], threshsub[i,"beta_Jul"], threshsub[i,"beta_Aug"], threshsub[i,"beta_Oct"], threshsub[i,"beta_Nov"], threshsub[i,"beta_Dec"] )
+lowci <-c(threshsub[i,"ciL_Jan"],threshsub[i,"ciL_Feb"], threshsub[i,"ciL_Mar"], threshsub[i,"ciL_Apr"], threshsub[i,"ciL_May"], threshsub[i,"ciL_Jun"], threshsub[i,"ciL_Jul"], threshsub[i,"ciL_Aug"], threshsub[i,"ciL_Oct"], threshsub[i,"ciL_Nov"], threshsub[i,"ciL_Dec"])
+upci <- c(threshsub[i,"ciU_Jan"],threshsub[i,"ciU_Feb"], threshsub[i,"ciU_Mar"], threshsub[i,"ciU_Apr"], threshsub[i,"ciU_May"], threshsub[i,"ciU_Jun"], threshsub[i,"ciU_Jul"], threshsub[i,"ciU_Aug"], threshsub[i,"ciU_Oct"], threshsub[i,"ciU_Nov"], threshsub[i,"ciU_Dec"])
+
     
   df <-data.frame(Month, Beta, lowci, upci)
   print(df)

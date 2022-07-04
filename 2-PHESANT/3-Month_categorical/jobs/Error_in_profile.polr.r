@@ -1,4 +1,4 @@
-#FOR X3829: Error "in optim"
+#FOR X3829: Error "in profile.polr"
 
 dataDir = Sys.getenv("PROJECT_DATA")
 

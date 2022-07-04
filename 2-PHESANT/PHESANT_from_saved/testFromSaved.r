@@ -45,25 +45,25 @@ print(traitofinterest)
 ## create empty results files
 
 source('saveHeader.R')
-saveHeader(paste(opt$resDir,"results-logistic-binary-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
-saveHeader(paste(opt$resDir,"results-linear-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
+#saveHeader(paste(opt$resDir,"results-logistic-binary-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
+#saveHeader(paste(opt$resDir,"results-linear-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
 saveHeader(paste(opt$resDir,"results-ordered-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
-saveHeader(paste(opt$resDir,"results-multinomial-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
+#saveHeader(paste(opt$resDir,"results-multinomial-logistic-", opt$partIdx, "-", opt$numParts, ".txt",sep=""), traitofinterest)
 
 
 ## test each type of outcome
 
-print("Testing continuous outcomes")
-testContinuous(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
+#print("Testing continuous outcomes")
+#testContinuous(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
 
 print("Testing categorical ordered outcomes")
 testCategoricalOrdered(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
 
-print("Testing categorical unordered outcomes")
-testCategoricalUnordered(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
+#print("Testing categorical unordered outcomes")
+#testCategoricalUnordered(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
 
-print("Testing binary outcomes")
-testBinary(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
+#print("Testing binary outcomes")
+#testBinary(opt$resDir, opt$partIdx, opt$numParts, confounders, exposure, traitofinterest, opt$userId, opt$phenoDir)
 
 
 

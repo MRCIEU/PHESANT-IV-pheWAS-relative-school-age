@@ -33,8 +33,22 @@ head(data)
 #Load MASS library to get polr function
 library (MASS)
 
+
+# extract pheno and convert to factor
+phenoFactor <- as.factor(data$X3829)
+
+# check distribution of outcome
+table(phenoFactor)
+
+# make confsPlusExp data frame
+confsPlusExp <- data[,c('Sep_Aug', 'x21022_0_0', 'x31_0_0')]
+
 #Louise's regression code
 #fit <- polr(phenoFactor ~ ., data=confsPlusExp, Hess=TRUE)
 
 #fitB <- polr(phenoFactor ~ ., data=confs, Hess=TRUE)
+
+
+
+
 

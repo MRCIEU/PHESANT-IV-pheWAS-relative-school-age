@@ -1,4 +1,4 @@
-#FOR X3829: Error "in profile.polr"
+#FOR X1458: Error "in profile.polr"
 
 dataDir = Sys.getenv("PROJECT_DATA")
 
@@ -33,8 +33,17 @@ head(data)
 #Load MASS library to get polr function
 library (MASS)
 
+# extract pheno and convert to factor
+phenoFactor <- as.factor(data$X1458)
+
+# check distribution of outcome
+table(phenoFactor)
+
+# make confsPlusExp data frame
+#**Need to change Sep_Aug to exposure 2 column names: 
+#confsPlusExp <- data[,c('Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'x21022_0_0', 'x31_0_0')]
+
 #Louise's regression code
 #fit <- polr(phenoFactor ~ ., data=confsPlusExp, Hess=TRUE)
 
 #fitB <- polr(phenoFactor ~ ., data=confs, Hess=TRUE)
-

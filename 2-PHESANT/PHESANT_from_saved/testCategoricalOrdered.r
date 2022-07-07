@@ -32,7 +32,7 @@ testCategoricalOrdered <- function(resDir, partNum, numParts, confounders, trait
                 cat(paste(varName, ' || catord || ', sep=''))
                 sink()
 
-		varType=''
+		varType='catord'
 		pheno = data[,varName]
 		phenoFactor = factor(pheno)
 

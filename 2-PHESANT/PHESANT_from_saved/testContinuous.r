@@ -25,7 +25,7 @@ testContinuous <- function(resDir, partNum, numParts, confounders, traitofintere
 		varName = phenoNames[i]
 		print(varName)
 
-		varType=''
+		varType='cont'
 		pheno = data[,varName]
 
 		sink(resLogFile, append=TRUE)

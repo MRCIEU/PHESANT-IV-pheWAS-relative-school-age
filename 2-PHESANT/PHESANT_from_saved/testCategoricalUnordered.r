@@ -32,7 +32,7 @@ testCategoricalUnordered <- function(resDir, partNum, numParts, confounders, tra
                 cat(paste(varName, ' || catunord || ', sep=''))
                 sink()
 
-		varType=''
+		varType='catunord'
 		pheno = data[,varName]
 
 		uniqVar = unique(na.omit(pheno))

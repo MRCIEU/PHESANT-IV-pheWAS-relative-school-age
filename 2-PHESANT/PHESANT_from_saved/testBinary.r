@@ -30,7 +30,7 @@ testBinary <- function(resDir, partNum, numParts, confounders, traitofinterest, 
                 cat(paste(varName, ' || binary || ', sep=''))
                 sink()
 
-		varType=''
+		varType='bin'
 
 		pheno = data[,varName]
 		phenoFactor = factor(pheno)

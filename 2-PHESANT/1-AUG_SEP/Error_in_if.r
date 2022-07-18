@@ -1,3 +1,5 @@
+#X2375 Error in if (all(pr > 0)) -sum(wt * log(pr)) else Inf: missing value where TRUE/FALSE needed
+
 dataDir = Sys.getenv("PROJECT_DATA")
 
 #Read in exposure, confounders & outcome data 
@@ -10,10 +12,12 @@ head(phenotype)
 
 #Just select the one outcome variable we want.
 phenotype = phenotype[ ,c("userID", "X2375")]
+head(phenotype)
 
-**Change column name "userID" to "eid" in phenotype dataframe
+#Change column name "userID" to "eid" in phenotype dataframe
 colnames(phenotype)
 names(phenotype)[names(phenotype) == "userID"] <- "eid"
+colnames(phenotype)
  
 #Merge exposure & confounders into one dataframe
 print(dim(exposure))
@@ -26,7 +30,7 @@ print(dim(exp_confs))
 head(exp_confs)
 #eid Sep_Aug x31_0_0 x21022_0_0
 
-#Merge phenotype and  exposure/confounders into one dataframe
+#Merge phenotype and exposure/confounders into one dataframe
 print(dim(phenotype))
 #502448      2
 data <- merge(phenotype,exp_confs, by="eid", all.x = TRUE, all.y=TRUE)
@@ -43,12 +47,27 @@ phenoFactor <- as.factor(data$X2375)
 
 # check distribution of outcome
 table(phenoFactor)
+#1      2      3
+# 14815 174962  27996
+
 
 # make confsPlusExp data frame
 confsPlusExp <- data[,c('Sep_Aug', 'x21022_0_0', 'x31_0_0')]
 
 
 #Louise's regression code
-#fit <- polr(phenoFactor ~ ., data=confsPlusExp, Hess=TRUE)
+fit <- polr(phenoFactor ~ ., data=confsPlusExp, Hess=TRUE)
+#Warning message:
+#In polr(phenoFactor ~ ., data = confsPlusExp, Hess = TRUE) :
+#  design appears to be rank-deficient, so dropping some coefs
 
-#fitB <- polr(phenoFactor ~ ., data=confs, Hess=TRUE)
+#Make confs only dataframe
+confsonly <- data[,c('x21022_0_0', 'x31_0_0')]
+
+
+fitB <- polr(phenoFactor ~ ., data=confsonly, Hess=TRUE)
+#Warning message:
+#In polr(phenoFactor ~ ., data = confsonly, Hess = TRUE) :
+#  design appears to be rank-deficient, so dropping some coefs
+
+

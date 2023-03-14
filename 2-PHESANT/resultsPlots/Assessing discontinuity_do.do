@@ -116,20 +116,13 @@ drop if varName=="X20127"
 *Data analysis
 *******************************************************************************************************************
 *Part 1:Metan Graphs
-*Loop to meta-analyse and save all the graphs as pdfs
+*Loop to meta-analyse and save all the graphs
 
 levels VariableName
 foreach i in `r(levels)'{
 		metan beta_ se_ if VariableName =="`i'", lcols(month)
 		graph save "file_`i'", replace
 		}	
-
-*Code to do the same but save graphs as pdf
-*levels VariableName
-*foreach i in `r(levels)'{
-		*metan beta_ se_ if VariableName =="`i'", lcols(month)
-		*graph export "file_`i'.pdf", replace
-		*}
 		
 ***********************************************************************************
 *Part 2:First Metareg

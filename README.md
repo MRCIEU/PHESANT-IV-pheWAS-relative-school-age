@@ -23,9 +23,7 @@ Prepare the exposure variables, and confounder file. The exposure variables are:
 
 1. A binary variable of those born in August versus those born in September (i.e. restricting to participants born in these months).
 2. A set of 11 indicator variables describing the month of birth of each participant.
-
-4. Week of birth was used as continous exposure but restricted to August or September births. This resulted in a continious exposure variable with 9 weeks ( week 31 to 39 )
-5. Week of birth was used as continous exposure with the first week of September coded as 0 with 52 weeks in total. Dependent on the year of birth week 35 would fall into August (coded as week 52) or September (coded as week 0). 
+3. Week of birth was used as continous exposure with the first week of September coded as 0 with 52 weeks in total. Dependent on the year of birth week 35 would fall into August (coded as week 52) or September (coded as week 0). 
 
 See `1-data_preparation` directory.
 

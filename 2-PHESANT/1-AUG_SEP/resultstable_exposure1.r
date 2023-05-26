@@ -5,10 +5,26 @@ for (i in 1:200)
 {
 
 ###Read in results files for each array
-resultslinear = read.delim(paste(resDir,'/phesant/exposure1/results-linear-',i,'-200.txt', sep=""), sep=',', header=1)
-resultsbinary = read.delim(paste(resDir,'/phesant/exposure1/results-logistic-binary-',i,'-200.txt', sep=""), sep=',', header=1)
-resultsmultinomial = read.delim(paste(resDir,'/phesant/exposure1/results-multinomial-logistic-',i,'-200.txt', sep=""), sep=',', header=1)
-resultsordered = read.delim(paste(resDir,'/phesant/exposure1/results-ordered-logistic-',i,'-200.txt', sep=""), sep=',', header=1)
+resultslinear = read.csv(paste0(resDir,'/phesant/exposure1/results-linear-',i,'-200.txt'))
+resultsbinary = read.csv(paste0(resDir,'/phesant/exposure1/results-logistic-binary-',i,'-200.txt'))
+resultsmultinomial = read.csv(paste0(resDir,'/phesant/exposure1/results-multinomial-logistic-',i,'-200.txt'))
+resultsordered = read.csv(paste0(resDir,'/phesant/exposure1/results-ordered-logistic-',i,'-200.txt'))
+
+if (nrow(resultslinear)>0) {
+resultslinear$varType="cont"
+}
+
+if (nrow(resultsbinary)>0) {
+resultsbinary$varType="binary"
+}
+
+if (nrow(resultsmultinomial)>0) {
+resultsmultinomial$varType="unordcat"
+}
+
+if (nrow(resultsordered)>0) {
+resultsordered$varType="ordcat"
+}
 
 #Check contents of dataframes
 head(resultslinear)

@@ -9,6 +9,23 @@ resultsbinary = read.delim(paste(resDir,'/phesant/exposure3/results-logistic-bin
 resultsmultinomial = read.delim(paste(resDir,'/phesant/exposure3/results-multinomial-logistic-',i,'-200.txt', sep=""), sep=',', header=1)
 resultsordered = read.delim(paste(resDir,'/phesant/exposure3/results-ordered-logistic-',i,'-200.txt', sep=""), sep=',', header=1)
 
+if (nrow(resultslinear)>0) {
+resultslinear$varType="cont"
+}
+
+if (nrow(resultsbinary)>0) {
+resultsbinary$varType="binary"
+}
+
+if (nrow(resultsmultinomial)>0) {
+resultsmultinomial$varType="unordcat"
+}
+
+if (nrow(resultsordered)>0) {
+resultsordered$varType="ordcat"
+}
+
+
 #Check contents of dataframes
 head(resultslinear)
 nrow(resultslinear)

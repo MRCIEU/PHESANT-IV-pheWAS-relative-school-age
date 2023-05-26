@@ -5,27 +5,41 @@ resDir = Sys.getenv("RES_DIR")
 exp1_res<-read.delim(paste(resDir,'/phesant/exposure1/allres_exp1.csv', sep=""), sep=',', header=1)
 head(exp1_res)
 
+exp1_n = nrow(exp1_res)
+exp1_res = exp1_res[order(exp1_res$pvalue),]
+exp1_res$rank = seq(1, nrow(exp1_res))
+exp1_res$fdr_p_thresh_exp1 = 0.05*exp1_res$rank/exp1_n
+exp1_res$belowFDRThresh_exp1 = exp1_res$pvalue < exp1_res$fdr_p_thresh_exp1
+exp1_res$rank = NULL
+
+
 exp2_res<-read.delim(paste(resDir,'/phesant/exposure2/allres.csv', sep=""), sep=',', header=1)
 head(exp2_res)
+
+exp2_n = nrow(exp2_res)
+exp2_res = exp2_res[order(exp2_res$pvalue),]
+exp2_res$rank = seq(1, nrow(exp2_res))
+exp2_res$fdr_p_thresh_exp2 = 0.05*exp2_res$rank/exp2_n
+exp2_res$belowFDRThresh_exp2 = exp2_res$pvalue < exp2_res$fdr_p_thresh_exp2
+
+exp2_res$rank = NULL
 
 exp3_res<-read.delim(paste(resDir,'/phesant/exposure3/allres_exp3.csv', sep=""), sep=',', header=1)
 head(exp3_res)
 
-##Keep only the columns we need (Get rid of varType as is NA and is duplicated in all exposures)
+exp3_n = nrow(exp3_res)
+exp3_res = exp3_res[order(exp3_res$pvalue),]
+exp3_res$rank = seq(1, nrow(exp3_res))
+exp3_res$fdr_p_thresh_exp3 = 0.05*exp3_res$rank/exp3_n
+exp3_res$belowFDRThresh_exp3 = exp3_res$pvalue < exp3_res$fdr_p_thresh_exp3
 
-exp1_res<-subset(exp1_res, select=-c(varType))
-head(exp1_res)
-exp2_res<-subset(exp2_res, select=-c(varType))
-head(exp2_res)
-exp3_res<-subset(exp3_res, select=-c(varType))
-head(exp3_res)
-
-##Change the column names to exposure 1 - 3
+exp3_res$rank = NULL
 
 #Exposure 1
 colnames(exp1_res)
 names(exp1_res)[names(exp1_res) == "n"] <- "n_exp1"
 names(exp1_res)[names(exp1_res) == "pvalue"] <- "pvalue_exp1"
+
 head(exp1_res)
 
 #Exposure 2
